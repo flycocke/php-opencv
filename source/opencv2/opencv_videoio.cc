@@ -158,6 +158,8 @@ ZEND_BEGIN_ARG_INFO_EX(opencv_video_capture_read_arginfo, 0, 0, 1)
                 ZEND_ARG_INFO(1, mat)
 ZEND_END_ARG_INFO()
 
+
+
 PHP_METHOD(opencv_video_capture, read)
 {
     zval *mat_zval = NULL;
@@ -188,6 +190,104 @@ PHP_METHOD(opencv_video_capture, read)
 }
 
 /**
+ * 开启get方法
+ * @param execute_data
+ * @param return_value
+ */
+
+ZEND_BEGIN_ARG_INFO_EX(opencv_video_capture_getFrameRate_arginfo, 0, 0, 1)
+    ZEND_ARG_INFO(0, love)
+ZEND_END_ARG_INFO()
+
+PHP_METHOD(opencv_video_capture, getFrameRate)
+{
+    int love = NULL;
+
+    // if (zend_parse_method_parameters(ZEND_NUM_ARGS(),getThis(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    // if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    opencv_mat_object *real_object;
+
+    opencv_video_capture_object *this_object = Z_PHP_VIDEO_CAPTURE_P(getThis());
+    double result = this_object->videoCapture->get(5);
+    RETURN_DOUBLE(result);
+}
+
+ZEND_BEGIN_ARG_INFO_EX(opencv_video_capture_getFramesNum_arginfo, 0, 0, 1)
+    ZEND_ARG_INFO(0, love)
+ZEND_END_ARG_INFO()
+
+PHP_METHOD(opencv_video_capture, getFramesNum)
+{
+    int love = NULL;
+
+    // if (zend_parse_method_parameters(ZEND_NUM_ARGS(),getThis(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    // if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    opencv_mat_object *real_object;
+
+    opencv_video_capture_object *this_object = Z_PHP_VIDEO_CAPTURE_P(getThis());
+    double result = this_object->videoCapture->get(7);
+    RETURN_DOUBLE(result);
+}
+
+ZEND_BEGIN_ARG_INFO_EX(opencv_video_capture_getWidth_arginfo, 0, 0, 1)
+    ZEND_ARG_INFO(0, love)
+ZEND_END_ARG_INFO()
+
+PHP_METHOD(opencv_video_capture, getWidth)
+{
+    int love = NULL;
+
+    // if (zend_parse_method_parameters(ZEND_NUM_ARGS(),getThis(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    // if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    opencv_mat_object *real_object;
+
+    opencv_video_capture_object *this_object = Z_PHP_VIDEO_CAPTURE_P(getThis());
+    double result = this_object->videoCapture->get(3);
+    RETURN_DOUBLE(result);
+}
+
+ZEND_BEGIN_ARG_INFO_EX(opencv_video_capture_getHeight_arginfo, 0, 0, 1)
+    ZEND_ARG_INFO(0, love)
+ZEND_END_ARG_INFO()
+
+PHP_METHOD(opencv_video_capture, getHeight)
+{
+    int love = NULL;
+
+    // if (zend_parse_method_parameters(ZEND_NUM_ARGS(),getThis(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    // if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &love) == FAILURE) {
+    //     RETURN_NULL();
+    // }
+
+    opencv_mat_object *real_object;
+
+    opencv_video_capture_object *this_object = Z_PHP_VIDEO_CAPTURE_P(getThis());
+    double result = this_object->videoCapture->get(4);
+    RETURN_DOUBLE(result);
+}
+
+/**
  * opencv_video_capture_methods[]
  */
 const zend_function_entry opencv_video_capture_methods[] = {
@@ -195,6 +295,10 @@ const zend_function_entry opencv_video_capture_methods[] = {
         PHP_ME(opencv_video_capture, open, NULL, ZEND_ACC_PUBLIC)
         PHP_MALIAS(opencv_video_capture, isOpened ,is_opened, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_video_capture, read, opencv_video_capture_read_arginfo, ZEND_ACC_PUBLIC)
+        PHP_ME(opencv_video_capture, getFrameRate, opencv_video_capture_getFrameRate_arginfo, ZEND_ACC_PUBLIC)
+        PHP_ME(opencv_video_capture, getFramesNum, opencv_video_capture_getFramesNum_arginfo, ZEND_ACC_PUBLIC)
+        PHP_ME(opencv_video_capture, getWidth, opencv_video_capture_getWidth_arginfo, ZEND_ACC_PUBLIC)
+        PHP_ME(opencv_video_capture, getHeight, opencv_video_capture_getHeight_arginfo, ZEND_ACC_PUBLIC)
         PHP_FE_END
 };
 /* }}} */
