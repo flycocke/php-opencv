@@ -2,9 +2,8 @@
 
 本插件是：opencv的php扩展
 
-## 项目地址
+## Document
 - [原项目地址](https://github.com/hihozhou/php-opencv)
-- [本项目地址](https://github.com/flycocke/php-opencv)
 
 ## 对应的版本关系
 
@@ -18,10 +17,10 @@
 - Php-opencv 最新版本，不要3.3.0
 - PHP7.1+
 
+当前本git就是php7.1+使用的php-opencv版本
 
 ## 新增功能说明
 ### 为了方便获取视频的时长和宽高，特别增加以下方法。以后增加方法也会注明在这里
-
 ```
 $capture = new VideoCapture($videoPath);//创建视频对象
 $rate = $capture->getFrameRate(); //帧率. 
@@ -29,12 +28,6 @@ $fraNum = $capture->getFramesNum(); //视频文件的帧数.
 $width = $capture->getWidth(); //视频文件宽度.
 $height = $capture->getHeight(); //视频文件的高度.
 ```
-
-### 对应修改了原作者的文件也说明下
-
-- /source/opencv2/opencv_videoio.cc 
-
-实在不会php7内核代码，随便乱写的，只要实现功能了我就没处理了。
 
 ## 安装
 本安装说明都是依我的安装经验回忆做的记录，有什么错误，请网友指正。
@@ -272,6 +265,12 @@ OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules
 这里的目录地址是 你下载的opencv_contrib所在目录
 
 ### opencv4.0.0+的编译
+
+如果怕下载插件出问题
+支持 git clone、wget、curl 下载,示例:
+替换opencv的所有的下载地址为
+https://g.ioiox.com/https://raw.githubusercontent.com/
+
 ```
 mkdir build
 cd build
@@ -344,8 +343,7 @@ make && make install
 进入php配置目录，如果你是yum安装的php应该可以找到
 ```
 cd /etc/php.d
-cp opencv.ini
-vim opencv.ini
+vi opencv.ini
 ```
 复制以下内容到opencv.ini
 ```
@@ -353,6 +351,8 @@ vim opencv.ini
 extension=opencv.so
 ```
 按esc,:qt保存。
+复制
+cp 编译目录/modules/opencv.so /usr/lib64/php/modules/opencv.so
 执行
 ```
 service php-fpm restart
